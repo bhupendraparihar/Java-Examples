@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation"
+        value="false" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.custom.i18n.resources"
+        value="ApplicationResources" />
+ 
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="getBookList" method="getBookListAction"
+            class="com.book.BookAction">
+            <result name="success">pages/BookList.jsp</result>
+            <result name="error">pages/index.jsp</result>
+        </action>
+        
+        <action name="createBookDisplay">
+        	<result name="success">pages/CreateBook.jsp</result>
+            <result name="error">pages/index.jsp</result>
+        </action>
+        
+        <action name="createBook" method="createBook"
+        	class="com.book.BookAction">
+        	<result name="success">pages/BookList.jsp</result>
+        	<result name="error">pages/index.jsp</result>
+        </action>
+
+        <action name="createMemberDisplay" method="updateMember"
+        	class="com.member.MemberAction">
+            <result name="success">pages/CreateMember.jsp</result>
+            <result name="error">pages/index.jsp</result>
+        </action>
+        
+        <action name="getMemberList" method="getMemberListAction"
+            class="com.member.MemberAction">
+            <result name="success">pages/MemberList.jsp</result>
+            <result name="error">pages/index.jsp</result>
+        </action>
+        
+        <action name="createMember" method="createMember"
+        	class="com.member.MemberAction">
+        	<result name="success" type="chain">getMemberList</result>
+            <result name="error">pages/index.jsp</result>
+        </action>
+        
+        <action name="deleteMember" method="deleteMember"
+        	class="com.member.MemberAction">
+        	<result name="success" type="chain">getMemberList</result>
+            <result name="error">pages/index.jsp</result>
+        </action>
+    </package>
+</struts>
